@@ -1,219 +1,61 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { Code, ExternalLink, Sparkles } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const projects = [
   {
     title: "Saarthi AI Bot",
-    category: "Generative AI",
-    tech: ["Python", "OpenAI", "Agentic Workflows"],
-    description: "End-to-end loan journey automation reducing manual intervention by 80%.",
-    impact: "INR 400cr Book Growth"
+    category: "GenAI & Automation",
+    impact: "End-to-end loan journey automation",
+    tech: ["Python", "OpenAI", "Agentic Frameworks"]
   },
   {
-    title: "DSA Finder",
-    category: "Product Innovation",
-    tech: ["Data Engineering", "Recommendation Engine"],
-    description: "Intelligent agent helping field agents find the right partners in seconds.",
-    impact: "60% Faster Sourcing"
-  },
-  {
-    title: "Personal Brand Agent",
-    category: "Self-Initiated",
-    tech: ["GenAI", "Knowledge Retrieval"],
-    description: "AI-driven content engine for personal branding and LinkedIn growth.",
-    impact: "7,000+ Followers"
-  },
-  {
-    title: "AI Caller POC",
-    category: "Voice AI",
-    tech: ["Twilio", "Real-time Voice"],
-    description: "Voice-based collection and service agents with natural dialogue.",
-    impact: "90% Cost Reduction"
+    title: "Project Horizon",
+    category: "Lending Infrastructure",
+    impact: "Scalable credit engine for MSMEs",
+    tech: ["Node.js", "Kubernetes", "PostgreSQL"]
   }
 ];
 
 export default function Projects() {
   return (
-    <section className="projects-section">
-      <div className="section-intro">
-        <h2 className="section-title">AI Lab & Projects</h2>
-        <p className="section-desc">Pioneering the next wave of intelligent financial systems.</p>
-      </div>
-      
-      <div className="project-grid">
-        {projects.map((project, idx) => (
-          <motion.div 
-            key={idx}
-            className="project-card glass"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
+    <div className="max-w-7xl mx-auto px-4">
+      <h2 className="section-header-cs">Strategic Deep Dive</h2>
+      <div className="grid md:grid-cols-2 gap-12">
+        {projects.map((project, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ y: -10 }}
+            className="glass-card overflow-hidden group"
+            style={{ padding: '2rem' }}
           >
-            <div className="card-header">
-              <span className="category">{project.category}</span>
-              <Sparkles size={16} className="sparkle" />
-            </div>
-            
-            <h3 className="project-title">{project.title}</h3>
-            <p className="project-desc">{project.description}</p>
-            
-            <div className="tech-stack">
-              {project.tech.map((t, i) => (
-                <span key={i} className="tech-tag">{t}</span>
-              ))}
-            </div>
-            
-            <div className="card-footer">
-              <div className="impact-box">
-                <span className="impact-label">Impact:</span>
-                <span className="impact-value">{project.impact}</span>
+            <div className="project-tile" style={{ padding: '1rem' }}>
+              <span className="text-sm font-mono text-blue-500 uppercase tracking-widest mb-2 block">
+                {project.category}
+              </span>
+              <h3 className="text-3xl font-bold mb-4 group-hover:text-blue-400 transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-white/60 mb-6 text-lg leading-relaxed">
+                {project.impact}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t, j) => (
+                  <span key={j} className="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs">
+                    {t}
+                  </span>
+                ))}
               </div>
-              <button className="icon-btn">
-                <ExternalLink size={18} />
-              </button>
             </div>
           </motion.div>
         ))}
       </div>
-
-      <style jsx>{`
-        .projects-section {
-          padding: 8rem 0;
-        }
-
-        .section-intro {
-          text-align: center;
-          margin-bottom: 5rem;
-        }
-
-        .section-title {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-          font-weight: 700;
-        }
-
-        .section-desc {
-          color: #94A3B8;
-          font-size: 1.1rem;
-        }
-
-        .project-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 2rem;
-        }
-
-        .project-card {
-          padding: 2.5rem;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .project-card::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(45deg, transparent, hsla(var(--accent-purple) / 0.05), transparent);
-          pointer-events: none;
-        }
-
-        .card-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 1.5rem;
-        }
-
-        .category {
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: hsl(var(--accent-purple));
-        }
-
-        .sparkle {
-          color: hsla(var(--accent-purple) / 0.5);
-        }
-
-        .project-title {
-          font-size: 1.75rem;
-          margin-bottom: 1rem;
-          font-weight: 700;
-        }
-
-        .project-desc {
-          color: #CBD5E1;
-          margin-bottom: 2rem;
-          line-height: 1.6;
-          flex-grow: 1;
-        }
-
-        .tech-stack {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          margin-bottom: 2rem;
-        }
-
-        .tech-tag {
-          font-size: 0.75rem;
-          padding: 0.25rem 0.75rem;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 100px;
-          color: #94A3B8;
-        }
-
-        .card-footer {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding-top: 1.5rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .impact-box {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .impact-label {
-          font-size: 0.7rem;
-          color: #64748B;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .impact-value {
-          font-weight: 700;
-          color: #F8FAFC;
-        }
-
-        .icon-btn {
-          color: #94A3B8;
-          background: transparent;
-        }
-
-        .icon-btn:hover {
-          color: #F8FAFC;
-          transform: translateY(-2px);
-        }
-
-        @media (max-width: 640px) {
-          .project-card {
-            padding: 2rem;
-          }
+      
+      <style jsx global>{`
+        .project-tile {
+            padding: 2rem !important;
         }
       `}</style>
-    </section>
+    </div>
   );
 }
