@@ -143,20 +143,20 @@ export default function Home() {
                 <span className="mono-label">IMPACT_METRICS</span>
               </div>
               <h2 className="heading-lg">AVP Strategy @ Clix Capital</h2>
-              <p className="text-mid">Orchestrating growth and digital transformation in high-scale lending. Built a 400cr book with 4800X operational efficiency gains.</p>
+              <p className="text-mid">Orchestrating growth and digital transformation in high-scale lending. Built a 400cr book with 4800X operational efficiency gains in strategic initiatives.</p>
               
               <div className="metrics-row">
                 <div className="metric-box">
                   <div className="metric-val heading-xl">
-                    <Counter value={4.3} suffix="K Cr" prefix="INR " />
+                    <Counter value={4300} suffix="+" prefix="INR " />
                   </div>
-                  <div className="metric-tag mono">TOTAL_BOOK_GROWTH</div>
+                  <div className="metric-tag mono">TOTAL_BOOK_GROWTH (Cr)</div>
                 </div>
                 <div className="metric-box">
                   <div className="metric-val heading-xl">
-                    <Counter value={40} suffix="%" />
+                    <Counter value={4800} suffix="X" />
                   </div>
-                  <div className="metric-tag mono">PAT_CONTRIBUTION</div>
+                  <div className="metric-tag mono">OPERATIONAL_EFFICIENCY</div>
                 </div>
               </div>
             </div>
