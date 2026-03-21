@@ -4,7 +4,6 @@ import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 function StarField() {
   const ref = useRef();
@@ -15,6 +14,11 @@ function StarField() {
     if (ref.current) {
       ref.current.rotation.x -= delta / 10;
       ref.current.rotation.y -= delta / 15;
+      
+      // Interactive Parallax
+      state.camera.position.x += (state.pointer.x * 0.5 - state.camera.position.x) * 0.05;
+      state.camera.position.y += (state.pointer.y * 0.5 - state.camera.position.y) * 0.05;
+      state.camera.lookAt(0, 0, 0);
     }
   });
 
@@ -23,7 +27,7 @@ function StarField() {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...{}}>
         <PointMaterial
           transparent
-          color="#8b5cf6" /* Brighter purple/blue mix for glow */
+          color="#8b5cf6"
           size={0.006}
           sizeAttenuation={true}
           depthWrite={false}
@@ -39,9 +43,6 @@ export default function Hero3D() {
     <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0 }}>
       <Canvas camera={{ position: [0, 0, 1] }}>
         <StarField />
-        <EffectComposer>
-          <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} intensity={2} />
-        </EffectComposer>
       </Canvas>
     </div>
   );

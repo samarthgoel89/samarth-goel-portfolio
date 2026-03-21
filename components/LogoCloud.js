@@ -1,54 +1,40 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
-const partners = [
-  { name: 'Clix Capital', domain: 'clix.capital' },
-  { name: 'DMI Finance', domain: 'dmifinance.in' },
-  { name: 'Samsung', domain: 'samsung.com' },
-  { name: 'Google', domain: 'google.com' },
-  { name: 'Airtel', domain: 'airtel.in' },
-  { name: 'Jio', domain: 'jio.com' },
-  { name: 'HDFC Bank', domain: 'hdfcbank.com' },
-  { name: 'Vercel', domain: 'vercel.com' }
+const PARTNERS = [
+  { name: "Samsung", id: 1 },
+  { name: "Google", id: 2 },
+  { name: "Reliance Jio", id: 3 },
+  { name: "Clix Capital", id: 4 },
+  { name: "DMI Finance", id: 5 },
+  { name: "Citibank", id: 6 },
 ];
 
 export default function LogoCloud() {
   return (
-    <div className="py-12 bg-black/50 backdrop-blur-sm border-y border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 mb-8">
-        <h3 className="text-center text-sm font-medium uppercase tracking-widest text-white/40">
-          Trusted by Leaders & Partners
-        </h3>
-      </div>
+    <section className="logo-cloud-section mono">
+      <p className="cloud-label">TRUSTED BY GLOBAL ECOSYSTEMS</p>
       
-      <div className="relative flex overflow-x-hidden">
+      <div className="marquee-wrapper">
         <motion.div 
-          className="flex whitespace-nowrap"
-          animate={{ x: [0, -1920] }}
+          className="marquee-content"
+          animate={{ x: ["0%", "-50%"] }}
           transition={{ 
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear"
+              duration: 25, 
+              repeat: Infinity, 
+              ease: "linear" 
           }}
         >
-          {[...partners, ...partners].map((partner, i) => (
-            <div key={i} className="flex items-center gap-4 mx-12">
-              <img 
-                src={`https://logo.clearbit.com/${partner.domain}`}
-                alt={partner.name}
-                className="w-10 h-10 partner-logo"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-              <span className="text-2xl font-bold text-white/20 hover:text-white/60 transition-colors pointer-events-none">
-                {partner.name}
-              </span>
+          {/* Double the array for seamless loops */}
+          {[...PARTNERS, ...PARTNERS].map((partner, index) => (
+             <div key={`${partner.id}-${index}`} className="partner-item">
+              <span className="partner-name">{partner.name.toUpperCase()}</span>
+              <div className="dot" />
             </div>
           ))}
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
